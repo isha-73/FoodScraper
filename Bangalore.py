@@ -8,19 +8,20 @@ headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
 }
 
-response = requests.get(url, headers=headers)
+try:
+  response = requests.get(url, headers=headers)
 
-# Send an HTTP GET request
+  # Send an HTTP GET request
 
-print(f"Status Code: {response.status_code}")
+  print(f"Status Code: {response.status_code}")
 
-# open or create a csv file
-csv_file = open('Bangalore.csv', 'w')
-writer = csv.writer(csv_file)
-writer.writerow(['Restaurant Name', 'Rating', 'Cuisine', 'Location'])
+  # open or create a csv file
+  csv_file = open('Bangalore.csv', 'w')
+  writer = csv.writer(csv_file)
+  writer.writerow(['Restaurant Name', 'Rating', 'Cuisine', 'Location'])
 
-# Check if the request was successful
-if response.status_code == 200:
+  # Check if the request was successful
+  if response.status_code == 200:
     # Parse the HTML content
     soup = BeautifulSoup(response.text, 'html.parser')
     # print(soup.prettify())
@@ -48,6 +49,9 @@ if response.status_code == 200:
         
        
    
-else:
+  else:
     print('Failed to retrieve the webpage.')
 
+except requests.exceptions.HTTPError as err:
+        print(f"HTTP Error Occured: {err}")
+        print(err)
