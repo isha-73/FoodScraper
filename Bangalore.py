@@ -16,7 +16,7 @@ try:
   print(f"Status Code: {response.status_code}")
 
   # open or create a csv file
-  csv_file = open('Bangalore.csv', 'w')
+  csv_file = open('csv/Bangalore.csv', 'w')
   writer = csv.writer(csv_file)
   writer.writerow(['Restaurant Name', 'Rating', 'Cuisine', 'Location'])
 
